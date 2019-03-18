@@ -116,3 +116,5 @@ se tabstop=4 shiftwidth=4
 nnoremap <C-w>O :only!<CR>
 set backupdir=/c/Temp/
 set backupdir=$Temp
+command! ReplaceWithClipboard %d | put +
+
