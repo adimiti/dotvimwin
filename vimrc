@@ -114,7 +114,8 @@ autocmd BufRead,BufNewFile *.pu,*.uml,*.plantuml,*.puml setfiletype plantuml | s
 se csprg=c:\Tools\bin\cscope.exe
 se tabstop=4 shiftwidth=4
 nnoremap <C-w>O :only!<CR>
-set backupdir=/c/Temp/
-set backupdir=$Temp
+"set backupdir=/c/Temp/
+"set backupdir=$Temp
+
 command! ReplaceWithClipboard %d | put +
 
