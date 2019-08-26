@@ -78,10 +78,10 @@ vnoremap <silent> <F4> "*y
 nnoremap <silent> <Leader>s :se hlsearch!<CR>
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
-autocmd FileType python nnoremap  <F5> :up <bar> !python % <cr>
-autocmd FileType python nnoremap  <S-F5> :up <bar> Shell python % <cr>
-autocmd FileType python nnoremap  <C-F5> :up <bar> set splitright <bar> vnew <bar> 0r!python #<cr>
-" autocmd FileType c let $PATH .= ';C:\mingw\bin' | nnoremap  <F5> :up <bar> !gcc -c % <cr> | nnoremap  <F9> :up <bar> !gcc % <cr>
+autocmd FileType python nnoremap  <F5> :up <bar> !C:\ProgramData\Anaconda2\python.exe % <cr>
+autocmd FileType python nnoremap  <S-F5> :up <bar> Shell C:\ProgramData\Anaconda2\python.exe % <cr>
+autocmd FileType python nnoremap  <C-F5> :up <bar> set splitright <bar> vnew <bar> 0r!C:\ProgramData\Anaconda2\python.exe #<cr>
+autocmd FileType c let $PATH .= ';C:\mingw\bin' | nnoremap  <F5> :up <bar> !gcc -c % <cr> | nnoremap  <F9> :up <bar> !gcc % <cr>
 " IntelHex
 nnoremap <silent> <Leader>h :call IHexChecksum()<CR>
 function IHexChecksum()
@@ -111,15 +111,10 @@ autocmd BufRead,BufNewFile * :if getline(1) =~ '^.*startuml.*$'| setfiletype pla
 autocmd BufRead,BufNewFile *.pu,*.uml,*.plantuml,*.puml setfiletype plantuml | set filetype=plantuml
 
 
+se csprg=c:\Tools\bin\cscope.exe
 se tabstop=4 shiftwidth=4
 nnoremap <C-w>O :only!<CR>
+set backupdir=/c/Temp/
+set backupdir=$Temp
 command! ReplaceWithClipboard %d | put +
-" se nobackup
-" set backupdir=./.backup,.,/tmp
-" set directory=./.backup,.,/tmp
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swp//
-set undodir=~/.vim/swp//
-" set noundofile
-"set modelines=1
-set modeline
+
