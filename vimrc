@@ -123,3 +123,4 @@ set undodir=~/.vim/swp//
 " set noundofile
 "set modelines=1
 set modeline
+autocmd FileType gitcommit setlocal spell
