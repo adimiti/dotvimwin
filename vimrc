@@ -1,6 +1,5 @@
 source $VIMRUNTIME/vimrc_example.vim
 
-
 "set diffexpr=MyDiff()
 function MyDiff()
   let opt = '-a --binary '
@@ -34,9 +33,6 @@ function MyDiff()
     let &shellxquote=l:shxq_sav
   endif
 endfunction
-
-
-
 
 " MY defs
 " ARROWS
@@ -78,10 +74,13 @@ vnoremap <silent> <F4> "*y
 nnoremap <silent> <Leader>s :se hlsearch!<CR>
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
-autocmd FileType python nnoremap  <F5> :up <bar> !C:\ProgramData\Anaconda2\python.exe % <cr>
-autocmd FileType python nnoremap  <S-F5> :up <bar> Shell C:\ProgramData\Anaconda2\python.exe % <cr>
-autocmd FileType python nnoremap  <C-F5> :up <bar> set splitright <bar> vnew <bar> 0r!C:\ProgramData\Anaconda2\python.exe #<cr>
-autocmd FileType c let $PATH .= ';C:\mingw\bin' | nnoremap  <F5> :up <bar> !gcc -c % <cr> | nnoremap  <F9> :up <bar> !gcc % <cr>
+"autocmd FileType python nnoremap  <F5> :up <bar> !C:\ProgramData\Anaconda2\python.exe % <cr>
+"autocmd FileType python nnoremap  <S-F5> :up <bar> Shell C:\ProgramData\Anaconda2\python.exe % <cr>
+"autocmd FileType python nnoremap  <C-F5> :up <bar> set splitright <bar> vnew <bar> 0r!C:\ProgramData\Anaconda2\python.exe #<cr>
+autocmd FileType python nnoremap  <F5> :up <bar> !C:\Python27\python.exe % <cr>
+autocmd FileType python nnoremap  <S-F5> :up <bar> Shell C:\Python27\python.exe % <cr>
+autocmd FileType python nnoremap  <C-F5> :up <bar> set splitright <bar> vnew <bar> 0r!C:\Python27\python.exe #<cr>
+autocmd FileType c let $PATH .= ';C:\mingw\bin' | nnoremap  <F5> :up <bar> !gcc -c % <cr> | nnoremap  <F9> :up <bar> !gcc -static-libgcc -static % <cr>
 " IntelHex
 nnoremap <silent> <Leader>h :call IHexChecksum()<CR>
 function IHexChecksum()
@@ -114,7 +113,13 @@ autocmd BufRead,BufNewFile *.pu,*.uml,*.plantuml,*.puml setfiletype plantuml | s
 se csprg=c:\Tools\bin\cscope.exe
 se tabstop=4 shiftwidth=4
 nnoremap <C-w>O :only!<CR>
-set backupdir=/c/Temp/
-set backupdir=$Temp
+"set backupdir=/c/Temp/
+"set backupdir=$Temp
 command! ReplaceWithClipboard %d | put +
+" cscope to quick-fix
+" set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
+" quckfix list and C-W=
+"autocmd! BufWinEnter *Quickfix* setlocal nowinfixheight 
+" autocmd Filetype gitcommit spell spelllang=en_us textwidth=72
+autocmd FileType gitcommit setlocal spell
 
