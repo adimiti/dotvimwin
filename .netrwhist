@@ -1,10 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/tmp/VF4_Linux'
-let g:netrw_dirhist_2='/tmp/VF4_Linux/VOICE_manager'
-let g:netrw_dirhist_3='/tmp/VF4_Linux/VOICE_manager/src'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/ivandi/projects/clones/VF4_Linux.011/.git'
+let g:netrw_dirhist_2='/home/ivandi/projects/clones/VF4_Linux.011/.git/modules'
+let g:netrw_dirhist_3='/home/ivandi/projects/clones/VF4_Linux.011/.git/modules/RF_MGR'
 let g:netrw_dirhist_4='/home/ivandi/projects/clones/VF4_Linux'
-let g:netrw_dirhist_5='/home/ivandi/projects/clones/VF4_Linux/VOICE_manager'
-let g:netrw_dirhist_6='/home/ivandi/projects/clones/VF4_Linux/VOICE_manager/src'
-let g:netrw_dirhist_7='/home/ivandi/projects/clones/VF4_Linux'
-let g:netrw_dirhist_8='/home/ivandi/projects/clones/VF4_Linux/VOICE_manager'
+let g:netrw_dirhist_5='/home/ivandi/projects/clones/VF4_Linux/SMS_ComProvider'
+let g:netrw_dirhist_6='/home/ivandi/projects/clones/VF4_Linux/SMS_ComProvider/src'
