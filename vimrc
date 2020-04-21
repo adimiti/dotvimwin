@@ -116,3 +116,8 @@ function! GotoJump()
     endif
   endif
 endfunction
+
+if has("gui_running")
+    "echo GIU
+endif
+
