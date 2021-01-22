@@ -13,12 +13,12 @@ set ignorecase  " Always case-insensitive
 set incsearch   " Searches for strings incrementally
  
 set autoindent  " Auto-indent new lines
-set expandtab   " Use spaces instead of tabs
+set noexpandtab " !!!!!!!!!!!!!!!!!!!!! Use spaces instead of tabs
 set shiftwidth=4    " Number of auto-indent spaces
 set smartindent " Enable smart-indent
 set smarttab    " Enable smart-tabs
 set softtabstop=4   " Number of spaces per Tab
- 
+set path+=**	" subdirectories  
 "" Advanced
 set ruler   " Show row and column ruler information
 set undodir=~/.vim/.undo//
@@ -64,6 +64,16 @@ autocmd FileType python nnoremap  <C-F5> :up <bar> set splitright <bar> vnew <ba
 " autocmd FileType c let $PATH .= ';C:\mingw\bin' | nnoremap  <F5> :up <bar> !gcc -c % <cr> | nnoremap  <F9> :up <bar> !gcc % <cr>
 " IntelHex
 nnoremap <silent> <Leader>h :call IHexChecksum()<CR>
+
+" Keyboard short-cut to replace currenlty highlighted word, 
+" select a word with *, type Shift-F6, type in a replacement and hit Enter to rename all occurrences interactively.
+nmap <expr> <S-F6> ':%s/' . @/ . '//gc<LEFT><LEFT><LEFT>'
+
+" Quick "throwaway" macros 
+nnoremap Q @q
+
+" --------------------------------------------------------------------------------
+
 function IHexChecksum()
     let l:data = getline(".")
     let l:dlen = strlen(data)
@@ -121,3 +131,13 @@ if has("gui_running")
     "echo GIU
 endif
 
+" find files and populate the quickfix list
+fun! FindFiles(filename)
+let error_file = tempname()
+    silent exe '!find . -name "'.a:filename.'" | xargs file | sed "s/:/:1:/" > '.error_file
+    set errorformat=%f:%l:%m
+    exe "cfile ". error_file
+    copen
+call delete(error_file)
+    endfun
+command! -nargs=1 FindFile call FindFiles(<q-args>)
