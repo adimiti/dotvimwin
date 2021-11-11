@@ -122,4 +122,13 @@ command! ReplaceWithClipboard %d | put +
 "autocmd! BufWinEnter *Quickfix* setlocal nowinfixheight 
 " autocmd Filetype gitcommit spell spelllang=en_us textwidth=72
 autocmd FileType gitcommit setlocal spell
+set undodir-=$HOME/tmp
+set undodir^=$HOME/tmp//
+set directory-=$HOME/tmp
+set directory^=$HOME/tmp//
+set backupdir-=$HOME/tmp
+set backupdir^=$HOME/tmp//
+
+" info
+set laststatus=2
 
