@@ -35,9 +35,6 @@ function MyDiff()
   endif
 endfunction
 
-
-
-
 " MY defs
 " ARROWS
 noremap <Up> <nop>
@@ -49,9 +46,13 @@ inoremap <Up> <nop>
 inoremap <Down> <nop>
 inoremap <Left> <nop>
 inoremap <Right> <nop>
+
+noremap <F1> <Esc>
+noremap! <F1> <Esc>
+
 "
 " Fonts
-set guifont=DejaVu_Sans_Mono:h11
+"set guifont=DejaVu_Sans_Mono:h11
 function! s:ExecuteInShell(command)
 	let command = join(map(split(a:command), 'expand(v:val)'))
 	let winnr = bufwinnr('^' . command . '$')
@@ -73,15 +74,15 @@ vnoremap <C-_> "-y:echo 'text' @- 'has length' strlen(@-)<CR>
 nnoremap <C-_> :echo 'word' expand('<cword>') 'has length' strlen(substitute(expand('<cword>'), '.', 'x', 'g'))<CR>
 
 nnoremap <silent> <F2> :up <cr>
-nnoremap <silent> <F4> ggVG"*y
+nnoremap <silent> <F4> :%y * <CR>
 vnoremap <silent> <F4> "*y
 nnoremap <silent> <Leader>s :se hlsearch!<CR>
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
-autocmd FileType python nnoremap  <F5> :up <bar> !C:\ProgramData\Anaconda2\python.exe % <cr>
-autocmd FileType python nnoremap  <S-F5> :up <bar> Shell C:\ProgramData\Anaconda2\python.exe % <cr>
-autocmd FileType python nnoremap  <C-F5> :up <bar> set splitright <bar> vnew <bar> 0r!C:\ProgramData\Anaconda2\python.exe #<cr>
-autocmd FileType c let $PATH .= ';C:\mingw\bin' | nnoremap  <F5> :up <bar> !gcc -c % <cr> | nnoremap  <F9> :up <bar> !gcc % <cr>
+autocmd FileType python nnoremap  <F5> :up <bar> !python % <cr>
+autocmd FileType python nnoremap  <S-F5> :up <bar> Shell python % <cr>
+autocmd FileType python nnoremap  <C-F5> :up <bar> set splitright <bar> vnew <bar> 0r!python #<cr>
+"autocmd FileType c let $PATH .= ';C:\mingw\bin' | nnoremap  <F5> :up <bar> !gcc -c % <cr> | nnoremap  <F9> :up <bar> !gcc % <cr>
 " IntelHex
 nnoremap <silent> <Leader>h :call IHexChecksum()<CR>
 function IHexChecksum()
@@ -109,12 +110,21 @@ endif
 
 autocmd BufRead,BufNewFile * :if getline(1) =~ '^.*startuml.*$'| setfiletype plantuml | set filetype=plantuml | endif
 autocmd BufRead,BufNewFile *.pu,*.uml,*.plantuml,*.puml setfiletype plantuml | set filetype=plantuml
+autocmd FileType gitcommit setlocal spell
 
 
-se csprg=c:\Tools\bin\cscope.exe
 se tabstop=4 shiftwidth=4
 nnoremap <C-w>O :only!<CR>
-set backupdir=/c/Temp/
-set backupdir=$Temp
-command! ReplaceWithClipboard %d | put +
+"command! ReplaceWithClipboard %d | put +
+nnoremap <Leader>b :set keymap=bulgarian-phonetic <BAR> setlocal spell spelllang=bg,en<CR>
+nnoremap <Leader>n :set keymap= <BAR> setlocal spelllang=en spell! <CR>
 
+set showcmd
+" store backup, undo, and swap files in temp directory
+set directory=$HOME/.vim/temp//
+set backupdir=$HOME/.vim/temp//
+set undodir=$HOME/.vim/temp//
+
+se modeline
+set statusline=%<%f\ %h%m%r\ %y%=%{v:register}\ %-14.(%l,%c%V%)\ %P
+set laststatus=2
