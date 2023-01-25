@@ -68,6 +68,7 @@ colorscheme torte
 vnoremap <C-_> "-y:echo 'text' @- 'has length' strlen(@-)<CR>
 nnoremap <C-_> :echo 'word' expand('<cword>') 'has length' strlen(substitute(expand('<cword>'), '.', 'x', 'g'))<CR>
 
+inoremap <silent> <F2> <ESC>:up <cr>
 nnoremap <silent> <F2> :up <cr>
 nnoremap <silent> <F4> ggVG"*y
 vnoremap <silent> <F4> "*y
@@ -77,7 +78,10 @@ nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 "autocmd FileType python nnoremap  <F5> :up <bar> !C:\ProgramData\Anaconda2\python.exe % <cr>
 "autocmd FileType python nnoremap  <S-F5> :up <bar> Shell C:\ProgramData\Anaconda2\python.exe % <cr>
 "autocmd FileType python nnoremap  <C-F5> :up <bar> set splitright <bar> vnew <bar> 0r!C:\ProgramData\Anaconda2\python.exe #<cr>
-autocmd FileType python nnoremap  <F5> :up <bar> !C:\Python27\python.exe % <cr>
+"autocmd FileType python nnoremap  <F5> :up <bar> !C:\Python27\python.exe % <cr>
+" disable the ''Press ENTER or type command to continue'' prompt 
+set cmdheight=2 
+autocmd FileType python nnoremap  <F5> :up <bar>!python % <cr>
 autocmd FileType python nnoremap  <S-F5> :up <bar> Shell C:\Python27\python.exe % <cr>
 autocmd FileType python nnoremap  <C-F5> :up <bar> set splitright <bar> vnew <bar> 0r!C:\Python27\python.exe #<cr>
 autocmd FileType c let $PATH .= ';C:\mingw\bin' | nnoremap  <F5> :up <bar> !gcc -c % <cr> | nnoremap  <F9> :up <bar> !gcc -static-libgcc -static % <cr>
@@ -111,6 +115,9 @@ autocmd BufRead,BufNewFile *.pu,*.uml,*.plantuml,*.puml setfiletype plantuml | s
 
 
 se csprg=c:\Tools\bin\cscope.exe
+let cscmd ="c:/Tools/bin/cscope.exe -bR"
+nnoremap <silent> <F12>  :cs k 0 <CR> :silent execute("!" .cscmd) <CR> :cs a cscope.out<CR>
+nnoremap <silent> <S-F12>  :silent execute("!" .cscmd) <CR> :cs a cscope.out<CR>
 se tabstop=4 shiftwidth=4
 nnoremap <C-w>O :only!<CR>
 "set backupdir=/c/Temp/
@@ -131,4 +138,6 @@ set backupdir^=$HOME/tmp//
 
 " info
 set laststatus=2
+
+nnoremap <silent> <Leader>b :set keymap=bulgarian-phonetic<CR>:set fenc=utf-8<CR>:se encoding=utf-8<CR>
 
