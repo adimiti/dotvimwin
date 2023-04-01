@@ -53,6 +53,7 @@ noremap! <F1> <Esc>
 "
 " Fonts
 "set guifont=DejaVu_Sans_Mono:h11
+set guifont=DejaVu\ Sans\ Mono\ 14
 function! s:ExecuteInShell(command)
 	let command = join(map(split(a:command), 'expand(v:val)'))
 	let winnr = bufwinnr('^' . command . '$')
@@ -73,11 +74,14 @@ colorscheme torte
 vnoremap <C-_> "-y:echo 'text' @- 'has length' strlen(@-)<CR>
 nnoremap <C-_> :echo 'word' expand('<cword>') 'has length' strlen(substitute(expand('<cword>'), '.', 'x', 'g'))<CR>
 
+inoremap <silent> <F2> <ESC>:up <cr>
 nnoremap <silent> <F2> :up <cr>
-nnoremap <silent> <F4> :%y * <CR>
-vnoremap <silent> <F4> "*y
+nnoremap <silent> <F4> :%y + <CR>
+vnoremap <silent> <F4> "+y
 nnoremap <silent> <Leader>s :se hlsearch!<CR>
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+
+noremap <F11> :!ctags -a -R --kinds-c=dept $(sdl2-config --prefix)/include <CR>
 
 autocmd FileType python nnoremap  <F5> :up <bar> !python % <cr>
 autocmd FileType python nnoremap  <S-F5> :up <bar> Shell python % <cr>
@@ -128,3 +132,9 @@ set undodir=$HOME/.vim/temp//
 se modeline
 set statusline=%<%f\ %h%m%r\ %y%=%{v:register}\ %-14.(%l,%c%V%)\ %P
 set laststatus=2
+set belloff=all
+
+nnoremap <F5> :up <BAR>make run<CR>
+nnoremap <F6> :up <BAR>!g++ -g -O0 % `sdl2-config --libs --cflags` -lSDL2_ttf && ./a.out<CR>
+nnoremap <S-F6> :up <BAR>!g++ -g -O0 % -lpthread  && ./a.out<CR>
+nnoremap <F7> :up <BAR>!g++ --syntax-only % `sdl2-config --cflags`<cr>
