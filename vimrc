@@ -140,4 +140,9 @@ set backupdir^=$HOME/tmp//
 set laststatus=2
 
 nnoremap <silent> <Leader>b :set keymap=bulgarian-phonetic<CR>:set fenc=utf-8<CR>:se encoding=utf-8<CR>
-
+set listchars+=space:␣
+" CLANG
+let g:clang_format_fallback_style = "Microsoft"
+map <C-I> :pyf C:/Program Files/LLVM/share/clang/clang-format.py<cr>
+imap <C-I> <c-o>:pyf C:/Program Files/LLVM/share/clang/clang-format.py<cr>
+map <F1> <Esc>
