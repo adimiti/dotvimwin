@@ -138,3 +138,13 @@ nnoremap <F5> :up <BAR>make run<CR>
 nnoremap <F6> :up <BAR>!g++ -g -O0 % `sdl2-config --libs --cflags` -lSDL2_ttf && ./a.out<CR>
 nnoremap <S-F6> :up <BAR>!g++ -g -O0 % -lpthread  && ./a.out<CR>
 nnoremap <F7> :up <BAR>!g++ --syntax-only % `sdl2-config --cflags`<cr>
+" clang format
+let g:clang_format_fallback_style='Microsoft'
+if has('python')
+  map <C-I> :pyf /usr/share/clang/clang-format-14/clang-format.py<cr>
+  imap <C-F3> <c-o>:pyf /usr/share/clang/clang-format-14/clang-format.py<cr>
+elseif has('python3')
+  map <C-I> :py3f /usr/share/clang/clang-format-14/clang-format.py<cr>
+  imap <C-F3> <c-o>:py3f /usr/share/clang/clang-format-14/clang-format.py<cr>
+endif
+set guioptions+=!
