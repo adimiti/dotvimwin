@@ -1,5 +1,5 @@
 source $VIMRUNTIME/vimrc_example.vim
-
+"source ~/.vim/riscv.vim
 
 "set diffexpr=MyDiff()
 function MyDiff()
@@ -83,6 +83,7 @@ nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 noremap <F11> :!ctags -a -R --kinds-c=dept $(sdl2-config --prefix)/include <CR>
 
+autocmd FileType python inoremap <silent> <F5> <ESC>:up <bar> !python % <cr>
 autocmd FileType python nnoremap  <F5> :up <bar> !python % <cr>
 autocmd FileType python nnoremap  <S-F5> :up <bar> Shell python % <cr>
 autocmd FileType python nnoremap  <C-F5> :up <bar> set splitright <bar> vnew <bar> 0r!python #<cr>
@@ -148,3 +149,35 @@ elseif has('python3')
   imap <C-F3> <c-o>:py3f /usr/share/clang/clang-format-14/clang-format.py<cr>
 endif
 set guioptions+=!
+autocmd FileType c,cpp iabbrev cstart #include <stdio.h>#include <stdlib.h>int main(int argc,char *argv[]){puts("hello world!");return 0;}
+autocmd FileType c,cpp iabbrev #i #include
+autocmd FileType c,cpp iabbrev #d #define
+autocmd FileType c,cpp iabbrev #f #ifdef#endifO
+
+packloadall
+set encoding=utf-8
+let g:ycm_autoclose_preview_window_after_completion = 1
+" ---------------------------------------- 
+"Toggle YouCompleteMe on and off with F3
+function Toggle_ycm()
+    if g:ycm_show_diagnostics_ui == 0
+        let g:ycm_auto_trigger = 1
+        let g:ycm_show_diagnostics_ui = 1
+        :YcmRestartServer
+        :e
+        :echo "YCM on"
+    elseif g:ycm_show_diagnostics_ui == 1
+        let g:ycm_auto_trigger = 0
+        let g:ycm_show_diagnostics_ui = 0
+        :YcmRestartServer
+        :e
+        :echo "YCM off"
+    endif
+endfunction
+map <F3> :call Toggle_ycm() <CR>
+" Even when I have YCM turned on, I don't want the cursor hover info popping up automatically, so I have a toggle set up for that as well. It still works even when the above toggle is off.
+
+" turn off automatic YouCompleteMe cursor hover info
+let g:ycm_auto_hover = ''
+" ---------------------------------------- 
+
